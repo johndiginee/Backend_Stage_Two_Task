@@ -1,7 +1,7 @@
 # API Documentation
 This documentation provides an overview of the API endpoints, request and response formats, sample usage, and instructions for setting up and deploying the API.
 
-### Create a New Person
+### Add New Person
 * Endpoint: /api
 * Method: *POST*
 * Request Format:
@@ -66,7 +66,7 @@ This documentation provides an overview of the API endpoints, request and respon
 
 ## Sample Usage
 
-### Create a New Person
+### Add New Person
 * Request:
 ```http
 POST /api
