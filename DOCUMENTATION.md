@@ -164,28 +164,22 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-### Installation on production server (Heroku via Github Actions)
+### Deployment
 
-```bash
-git clone https://github.com/johndiginee/Backend_Stage_Two_Task.git
-```
-```bash
-python3 -m venv venv
-```
-```bash
-source venv/bin/activate
-```
-```bash
-pip install -r requirements.txt
-```
-```bash
-python3 manage.py makemigrations
-```
-```bash
-python3 manage.py migrate
-```
-```bash
-python3 manage.py runserver
-```
+* Deploy the API on a server of your choice (e.g., AWS, Heroku, or a VPS).
 
-View collection in public - https://www.postman.com/crimson-moon-328864/workspace/team-workspace/collection/26195808-4b568f17-9f8e-4034-ae48-eba48b5a06b2
+* Configure your production settings, including database settings and security settings.
+
+* Set up a production-ready web server (e.g., Nginx or Apache) to serve your Django application.
+
+* Ensure you have proper authentication and authorization mechanisms in place for production use.
+
+* Use a reverse proxy (e.g., Gunicorn or uWSGI) to serve your Django application in production.
+
+### Deployment to Heroku via Github Actions
+
+Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/actions to and create new repository secret for HEROKU_API_KEY and HEROKU_APP_NAME
+
+* Edit django.yml in .github/workflows and change heroku_email: "johndbizz@gmail.com" to your Heroku email.
+
+* Commit and push your code to Github
