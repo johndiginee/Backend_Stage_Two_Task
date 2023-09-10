@@ -164,18 +164,6 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-### Deployment
-
-* Deploy the API on a server of your choice (e.g., AWS, Heroku, or a VPS).
-
-* Configure your production settings, including database settings and security settings.
-
-* Set up a production-ready web server (e.g., Nginx or Apache) to serve your Django application.
-
-* Ensure you have proper authentication and authorization mechanisms in place for production use.
-
-* Use a reverse proxy (e.g., Gunicorn or uWSGI) to serve your Django application in production.
-
 ### Deployment to Heroku via Github Actions
 
 Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/actions to and create new repository secret for HEROKU_API_KEY and HEROKU_APP_NAME
@@ -183,3 +171,5 @@ Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/action
 * Edit django.yml in .github/workflows and change heroku_email: "johndbizz@gmail.com" to your Heroku email.
 
 * Commit and push your code to Github
+
+* In settings.py change ALLOWED_HOSTS = ["*", "https://backendstageonetask-ae50276ef98d.herokuapp.com", "https://backendstageonetask-ae50276ef98d.herokuapp.com/api/"] your app link and endpoint.
