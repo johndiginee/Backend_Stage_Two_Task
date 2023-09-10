@@ -173,7 +173,7 @@ Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/action
 
 * Edit django.yml in .github/workflows and change heroku_email: "johndbizz@gmail.com" to your Heroku email.
 
-* In settings.py change ALLOWED_HOSTS = ["*", "https://backendstageonetask-ae50276ef98d.herokuapp.com", "https://backendstageonetask-ae50276ef98d.herokuapp.com/api/"] your app link and endpoint.
+* In settings.py change ALLOWED_HOSTS = ["*", "https://backendstageonetask-ae50276ef98d.herokuapp.com", "https://backendstageonetask-ae50276ef98d.herokuapp.com/api/"] links to your app link and endpoint.
 
 * After committing and pushing your code to Github
 
