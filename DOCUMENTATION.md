@@ -16,6 +16,7 @@ This documentation provides an overview of the API endpoints, request and respon
     "id": 1,
     "name": "John Doe"
 }
+```
 
 ### Fetch Details of a Person by Name
 * Endpoint: /api
