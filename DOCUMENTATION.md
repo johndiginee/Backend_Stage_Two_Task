@@ -132,6 +132,9 @@ DELETE /api/Alice%20Johnson/
 }
 ```
 
+## Test API Endpoints via PostMan
+Click here - https://www.postman.com/crimson-moon-328864/workspace/team-workspace/request/26195808-19cd3be2-d01a-4ff5-892a-4eb48715bd8c
+
 ## Known Limitations and Assumptions
 
 * This API assumes that the "name" field is unique for each person. If not, it might not retrieve or update the intended person correctly.
