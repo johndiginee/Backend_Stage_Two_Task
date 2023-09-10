@@ -53,9 +53,9 @@ This documentation provides an overview of the API endpoints, request and respon
     "name": "John Doe2"
 }
 ```
-### Update Details of an Existing Person by Name
+### Delete Person by Name
 * Endpoint: /api/{name}/
-* Method: *PUT or PATCH*
+* Method: *DELETE*
 * Request Format: None
 * Response Format:
 ```json
@@ -88,7 +88,7 @@ Content-Type: multipart/form-data
 ### Fetch Details of a Person by Name
 * Request:
 ```http
-GET /api/?name=John%20Doe
+GET /api/name=John%20Doe
 ```
 * Response:
 ```json

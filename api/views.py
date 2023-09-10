@@ -29,6 +29,6 @@ class PersonRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         try:
             instance = self.get_object()
             self.perform_destroy(instance)
-            return Response({"message": f"Person '{instance.name}' has been removed successfully."}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": f"Person '{instance.name}' has been removed successfully."}, status=status.HTTP_410_GONE)
         except Person.DoesNotExist:
             return Response({"error": "Person not found."}, status=status.HTTP_404_NOT_FOUND)
