@@ -170,6 +170,10 @@ Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/action
 
 * Edit django.yml in .github/workflows and change heroku_email: "johndbizz@gmail.com" to your Heroku email.
 
-* Commit and push your code to Github
-
 * In settings.py change ALLOWED_HOSTS = ["*", "https://backendstageonetask-ae50276ef98d.herokuapp.com", "https://backendstageonetask-ae50276ef98d.herokuapp.com/api/"] your app link and endpoint.
+
+* After committing and pushing your code to Github
+
+Login to your Heroku account click on the newly created app >> More >> Run console and run this "python3 manage.py migrate".
+
+Congratulations!
