@@ -137,6 +137,9 @@ DELETE /api/Alice%20Johnson/
 * This API assumes that the "name" field is unique for each person. If not, it might not retrieve or update the intended person correctly.
 * Authentication and authorization mechanisms are not included in this basic example. It's essential to implement proper security measures in a production environment.
 
+## UML and E-R Diagrams
+<img src="https://res.cloudinary.com/dkezlmzn1/image/upload/v1694378399/People1_spiosd.png"/>
+<img src="https://res.cloudinary.com/dkezlmzn1/image/upload/v1694378546/People2_ih0taw.png"/>
 
 ## Setting Up and Deploying the API
 
