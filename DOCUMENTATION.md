@@ -3,7 +3,7 @@ This documentation provides an overview of the API endpoints, request and respon
 
 ### Create a New Person
 * Endpoint: /api
-* Method: POST
+* Method: *POST*
 * Request Format:
 ```json
 {
@@ -20,7 +20,7 @@ This documentation provides an overview of the API endpoints, request and respon
 
 ### Fetch Details of a Person by Name
 * Endpoint: /api
-* Method: POST
+* Method: *GET*
 * Request Format: None
 * Response Format:
 ```json
