@@ -88,7 +88,7 @@ Content-Type: multipart/form-data
 ### Fetch Details of a Person by Name
 * Request:
 ```http
-GET /persons/?name=John%20Doe
+GET /api/?name=John%20Doe
 ```
 * Response:
 ```json
@@ -103,7 +103,7 @@ GET /persons/?name=John%20Doe
 ### Update Details of an Existing Person by Name
 * Request:
 ```http
-PUT /persons/John%20Doe/
+PUT /api/John%20Doe/
 Content-Type: multipart/form-data
 
 {
