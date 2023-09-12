@@ -40,12 +40,16 @@ python3 manage.py runserver
 
 * Request Format:
 - Content-Type: application/json
-- Request Body: aplication/json { "name": "John Diginee" }
-
+- Request Body: aplication/json 
+```json
+{ "name": "John Diginee" }
+```
 * Response Format:
 - HTTP Status: 201 Created
-- Response Body: application/json { "id": 1, "name": "John Diginee" }
-
+- Response Body: application/json 
+```json
+{ "id": 1, "name": "John Diginee" }
+```
 Sample Usage: shell curl -X POST -H "Content-Type: application/json" -d '{"name": "John Diginee"}' https://example.com/api
 
 ### Retrieve Person by Name
@@ -59,8 +63,10 @@ Sample Usage: shell curl -X POST -H "Content-Type: application/json" -d '{"name"
 * Response Format:
 
 - HTTP Status: 200 OK
-- Response Body: application/json { "id": 1, "name": "John Diginee" }
-
+- Response Body: application/json 
+```json
+{ "id": 1, "name": "John Diginee" }
+```
 Sample Usage: shell curl https://example.com/api?name=John%Diginee
 
 ### Retrieve Person by ID
@@ -69,8 +75,10 @@ Sample Usage: shell curl https://example.com/api?name=John%Diginee
 * HTTP Method: GET
 * Response Format:
 - HTTP Status: 200 OK
-- Response Body: application/json { "id": 7, "name": "John Diiginee" }
-
+- Response Body: application/json 
+```json
+{ "id": 7, "name": "John Diginee" }
+```
 Sample Usage: shell curl https://example.com/api/7
 
 ### Update Person by Name
@@ -83,13 +91,17 @@ Sample Usage: shell curl https://example.com/api/7
 * Request Format:
 
 - Content-Type: application/json
-- Request Body: application/json { "name": "John Diginee" }
-
+- Request Body: application/json 
+```json
+{ "name": "John Diginee" }
+```
 * Response Format:
 
 - HTTP Status: 202 Accepted
-- Response Body: application/json { "id": 1, "name": "John Diginee" }
-
+- Response Body: application/json 
+```json
+{ "id": 1, "name": "John Diginee" }
+```
 Sample Usage: shell curl -X PUT -H "Content-Type: application/json" -d '{"name": "John Diginee"}' https://example.com/api?nameJames%20Ken
 
 ### Update Person by ID
@@ -98,12 +110,16 @@ Sample Usage: shell curl -X PUT -H "Content-Type: application/json" -d '{"name":
 * HTTP Method: PUT
 * Request Format:
 - Content-Type: application/json
-- Request Body: { "name": "John Diginee" }
-
+- Request Body: 
+```json
+{ "name": "John Diginee" }
+```
 * Response Format:
 - HTTP Status: 202 Accepted
-- Response Body: application/json { "id": 1, "name": "James Ken" }
-
+- Response Body: application/json 
+```json
+{ "id": 1, "name": "James Ken" }
+```
 Sample Usage: shell curl -X PUT -H "Content-Type: application/json" -d '{"name": "James Kene"}' https://example.com/api/1
 
 ### Delete Person by Name
