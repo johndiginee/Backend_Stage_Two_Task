@@ -1,6 +1,11 @@
 # API Documentation
 This documentation provides an overview of the API endpoints, request and response formats, sample usage, and instructions for setting up and deploying the API.
 
+### Base URL
+```bash
+https://backendstagetwotask-2413266c5594.herokuapp.com/api
+```
+
 ### Add New Person
 * Description: Creates a new user with the provided name.
 
@@ -94,9 +99,6 @@ Sample Usage: shell curl -X DELETE https://example.com/api?name=James%20Ken
 * Response Format:
 - HTTP Status: 204 No Content Sample Usage: shell curl -X DELETE https://example.com/api/3
 
-## Test API Endpoints via PostMan
-Click here - https://www.postman.com/crimson-moon-328864/workspace/team-workspace/request/26195808-19cd3be2-d01a-4ff5-892a-4eb48715bd8c
-
 ## Known Limitations and Assumptions
 
 * This API assumes that the "name" field is unique for each person. If not, it might not retrieve or update the intended person correctly.
@@ -146,5 +148,3 @@ Visit https://github.com/username/Backend_Stage_Two_Task/settings/secrets/action
 * After committing and pushing your code to Github
 
 Login to your Heroku account click on the newly created app >> More >> Run console and run this "python3 manage.py migrate".
-
-Congratulations!
