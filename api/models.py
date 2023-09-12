@@ -6,4 +6,4 @@ class Person(models.Model):
     Attributes:
         name: The person full name.
     """
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)

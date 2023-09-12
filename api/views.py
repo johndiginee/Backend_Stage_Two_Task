@@ -1,34 +1,96 @@
-from rest_framework import generics, status
-from django.db.models import Q
-from .models import Person
 from .serializers import PersonSerializer
+from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import render
+from rest_framework.views import APIView
+from .models import Person
 
-class PersonListCreateView(generics.ListCreateAPIView):
-    serializer_class = PersonSerializer
 
-    def get_queryset(self):
-        """Get all persons by default."""
-        queryset = Person.objects.all()
-        
-        """Extract the 'name' query parameter from the request."""
-        name = self.request.query_params.get('name', None)
-        
-        """If 'name' is provided in the query parameters, filter the queryset."""
-        if name is not None:
-            """Use a case-insensitive contains filter to find names containing the provided 'name'."""
-            queryset = queryset.filter(Q(name__icontains=name))
-        return queryset
+class PersonView(APIView):
 
-class PersonRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Person.objects.all()
-    serializer_class = PersonSerializer
-    lookup_field = 'name'
+    def get(self, request: Request):
 
-    def destroy(self, request, *args, **kwargs):
+        name = request.GET.get("name")
         try:
-            instance = self.get_object()
-            self.perform_destroy(instance)
-            return Response({"message": f"Person '{instance.name}' has been removed successfully."}, status=status.HTTP_410_GONE)
+            queryset = Person.objects.get(name=name)
         except Person.DoesNotExist:
-            return Response({"error": "Person not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "This name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = PersonSerializer(instance=queryset)
+        return Response(serializer.data, status=status.HTTP_200_OK) 
+ 
+    def post(self, request: Request):
+        data = request.data
+        name = data.get("name")
+        if not isinstance(name, str):
+            return Response({"error": "The name must be a string"}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = PersonSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request: Request):
+        existing_name = request.GET.get("name")
+        name = request.data.get("name")
+        if not isinstance(name, str):
+            return Response({"error": "The name must be a string"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            queryset = Person.objects.get(name=existing_name)
+        except Person.DoesNotExist:
+            return Response({"error": "The name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        queryset.name = name
+        
+        serializer = PersonSerializer(instance=queryset, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request: Request):
+        name = request.GET.get("name")
+        try:
+            queryset = Person.objects.get(name=name)
+        except Person.DoesNotExist:
+            return Response({"error": "The name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        
+class PersonRetrieveUpdateDestroyView(APIView):
+
+    def get(self, request: Request, pk):
+        try:
+            queryset = Person.objects.get(pk=pk)
+        except Person.DoesNotExist:
+            return Response({"error": "The name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = PersonSerializer(instance=queryset)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request: Request, pk):
+        data = request.data
+        name = data.get("name")
+        if not isinstance(name, str):
+            return Response({"error": "name must be a string"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            queryset = Person.objects.get(pk=pk)
+        except Person.DoesNotExist:
+            return Response({"error": "The name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        queryset.name = name
+        serializer = PersonSerializer(instance=queryset, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request: Request, pk):
+        try:
+            queryset = Person.objects.get(pk=pk)
+        except Person.DoesNotExist:
+            return Response({"error": "The name does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

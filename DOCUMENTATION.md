@@ -2,135 +2,97 @@
 This documentation provides an overview of the API endpoints, request and response formats, sample usage, and instructions for setting up and deploying the API.
 
 ### Add New Person
-* Endpoint: /api
-* Method: *POST*
-* Request Format:
-```json
-{
-    "name": "John Doe"
-}
-```
-* Response Format:
-```json
-{
-    "id": 1,
-    "name": "John Doe"
-}
-```
+* Description: Creates a new user with the provided name.
 
-### Fetch Details of a Person by Name
 * Endpoint: /api
-* Method: *GET*
-* Request Format: None
-* Response Format:
-```json
-[
-    {
-        "id": 1,
-        "name": "John Doe"
-    },
-    {
-        "id": 2,
-        "name": "Jane Smith"
-    }
-    // More persons...
-]
 
-```
-### Update Details of an Existing Person by Name
-* Endpoint: /api/{name}/
-* Method: *PUT or PATCH*
+* HTTP Method: POST
+
 * Request Format:
-```json
-{
-    "name": "John Doe2"
-}
-```
+- Content-Type: application/json
+- Request Body: aplication/json { "name": "John Diginee" }
+
 * Response Format:
-```json
-{
-    "id": 1,
-    "name": "John Doe2"
-}
-```
+- HTTP Status: 201 Created
+- Response Body: application/json { "id": 1, "name": "John Diginee" }
+
+Sample Usage: shell curl -X POST -H "Content-Type: application/json" -d '{"name": "John Diginee"}' https://example.com/api
+
+### Retrieve Person by Name
+* Description: Retrieves user details by name.
+* Endpoint: /api
+* HTTP Method: GET
+* Query Parameter:
+
+- name (string): The name of the user to retrieve.
+
+* Response Format:
+
+- HTTP Status: 200 OK
+- Response Body: application/json { "id": 1, "name": "John Diginee" }
+
+Sample Usage: shell curl https://example.com/api?name=John%Diginee
+
+### Retrieve Person by ID
+* Description: Retrieves user details by ID.
+* Endpoint: /api/user_id
+* HTTP Method: GET
+* Response Format:
+- HTTP Status: 200 OK
+- Response Body: application/json { "id": 7, "name": "John Diiginee" }
+
+Sample Usage: shell curl https://example.com/api/7
+
+### Update Person by Name
+* Description: Update user details by name.
+* Endpoint: /api
+* HTTP Method: PUT
+* Query Parameter:
+
+- name (string): The name of the user to update.
+* Request Format:
+
+- Content-Type: application/json
+- Request Body: application/json { "name": "John Diginee" }
+
+* Response Format:
+
+- HTTP Status: 202 Accepted
+- Response Body: application/json { "id": 1, "name": "John Diginee" }
+
+Sample Usage: shell curl -X PUT -H "Content-Type: application/json" -d '{"name": "John Diginee"}' https://example.com/api?nameJames%20Ken
+
+### Update Person by ID
+* Description: Updates user details by ID.
+* Endpoint: /api/user_id
+* HTTP Method: PUT
+* Request Format:
+- Content-Type: application/json
+- Request Body: { "name": "John Diginee" }
+
+* Response Format:
+- HTTP Status: 202 Accepted
+- Response Body: application/json { "id": 1, "name": "James Ken" }
+
+Sample Usage: shell curl -X PUT -H "Content-Type: application/json" -d '{"name": "James Kene"}' https://example.com/api/1
+
 ### Delete Person by Name
-* Endpoint: /api/{name}/
-* Method: *DELETE*
-* Request Format: None
+* Description: Delete a user by name.
+* Endpoint: /api
+* HTTP Method: DELETE
+* Query Parameter:
+- name (string): The name of the user to delete.
 * Response Format:
-```json
-{
-    "message": "Person 'John Doe' has been removed successfully."
-}
-```
+- HTTP Status: 204 No Content
 
-## Sample Usage
+Sample Usage: shell curl -X DELETE https://example.com/api?name=James%20Ken
 
-### Add New Person
-* Request:
-```http
-POST /api
-Content-Type: multipart/form-data
-
-{
-    "name": "Alice Johnson"
-}
-
-```
-* Response:
-```json
-{
-    "id": 3,
-    "name": "Alice Johnson"
-}
-```
-
-### Fetch Details of a Person by Name
-* Request:
-```http
-GET /api/name=John%20Doe
-```
-* Response:
-```json
-[
-    {
-        "id": 1,
-        "name": "John Doe"
-    }
-]
-```
-
-### Update Details of an Existing Person by Name
-* Request:
-```http
-PUT /api/John%20Doe/
-Content-Type: multipart/form-data
-
-{
-    "name": "John Doe2"
-}
-```
-* Response:
-```json
-[
-    {
-        "id": 1,
-        "name": "John Doe2"
-    }
-]
-```
-
-### Delete a Person by Name
-* Request:
-```http
-DELETE /api/Alice%20Johnson/
-```
-* Response:
-```json
-{
-    "message": "Person 'Alice Johnson' has been removed successfully."
-}
-```
+### Delete Person by ID
+* Description: Deletes a user by ID.
+* Endpoint: /api/user_id
+* HTTP Method: DELETE
+* Response Format:
+- HTTP Status: 204 No Content Sample Usage: shell curl -X DELETE https://example.com/api/3
 
 ## Test API Endpoints via PostMan
 Click here - https://www.postman.com/crimson-moon-328864/workspace/team-workspace/request/26195808-19cd3be2-d01a-4ff5-892a-4eb48715bd8c
@@ -159,6 +121,9 @@ source venv/bin/activate
 ```
 ```bash
 pip install -r requirements.txt
+```
+```bash
+Set DEBUG = True in settings.py
 ```
 ```bash
 python3 manage.py makemigrations
